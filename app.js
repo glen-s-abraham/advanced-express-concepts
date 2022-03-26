@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const nconf = require('nconf')
 const winston = require('winston')
+const nunjucks = require('nunjucks')
 
 winston.add(new winston.transports.File({ filename: 'logfile.log',level:'error' }));
 
@@ -36,9 +37,14 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
+nunjucks.configure('views',{
+  autoescape:true,
+  express:app
+})
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'html');
 
 app.use(logger('dev'));
 app.use(express.json());

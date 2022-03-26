@@ -51,3 +51,15 @@ winston.warn()
 winston.error()
 
 winston.add(new winston.transports.File({ filename: 'logfile.log',level:'error' }));
+
+#################NUNJUCKS TEMPLATING###################
+npm i nunjucks
+
+nunjucks.configure('views',{
+autoescape:true,
+express:app
+})
+
+// view engine setup
+app.set('views', path.join(\_\_dirname, 'views'));
+app.set('view engine', 'html');
